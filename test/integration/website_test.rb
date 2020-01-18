@@ -61,6 +61,21 @@ class WebsiteTest < ActionDispatch::IntegrationTest
     assert_equal expected_total, charity.reload.total
   end
 
+  test "that someone can donate to a charity,  with subunits allowed in amount field" do
+    charity = charities(:children)
+    initial_total = charity.total
+    expected_total = initial_total + (100.01 * 100)
+
+    post(donate_path, params: {
+           amount: "100.01", omise_token: "tokn_X", charity: charity.id
+         })
+    follow_redirect!
+
+    assert_template :index
+    assert_equal t("website.donate.success"), flash[:notice]
+    assert_equal expected_total, charity.reload.total
+  end
+
   test "that if the charge fail from omise side it shows an error" do
     charity = charities(:children)
 
@@ -87,4 +102,5 @@ class WebsiteTest < ActionDispatch::IntegrationTest
     assert_equal expected_total, charities.to_a.map(&:reload).sum(&:total)
     assert_equal t("website.donate.success"), flash[:notice]
   end
+
 end

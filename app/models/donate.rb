@@ -27,12 +27,12 @@ class Donate
   def build_charge_object
     if Rails.env.test?
       charge = OpenStruct.new({
-        amount: amount.to_i * 100,
+        amount: amount.to_f * 100,
         paid: (amount.to_i != 999),
       })
     else
       charge = Omise::Charge.create({
-        amount: amount.to_i * 100,
+        amount: amount.to_f * 100,
         currency: "THB",
         card: params[:omise_token],
         description: "Donation to #{charity.name} [#{charity.id}]",
