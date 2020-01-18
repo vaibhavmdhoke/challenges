@@ -22,3 +22,8 @@ disabled:
   name: Thailand Association of the Blind
   total: 0
   currency: THB
+
+charity_for_transaction:
+  name: Thailand Association of the Blind
+  total: 0
+  currency: THB

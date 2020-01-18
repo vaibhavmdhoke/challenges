@@ -1,0 +1,12 @@
+
+one:
+  amount: 1
+  charity: one
+
+two:
+  amount: 1
+  charity: two
+
+transaction_charity:
+  amount: 1
+  charity: three
