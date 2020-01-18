@@ -42,7 +42,7 @@ class Donate
       charge = Omise::Charge.create({
         amount: amount.to_f * 100,
         currency: "THB",
-        card: params[:omise_token],
+        card: omise_token,
         description: "Donation to #{charity.name} [#{charity.id}]",
       })
     end
