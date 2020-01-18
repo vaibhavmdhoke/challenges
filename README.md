@@ -32,7 +32,7 @@ them pass.
 ## Exercises
 
   1. Fix the race condition in the balance amount column.
-  2. Refactor and improve the code in the donate action.
+  2. Refactor and improve the code in the donate action. (Done)
   3. Fix and add integration tests to allow subunits in the amount field.
   4. Add a feature to allow a charity to be picked at random.
 
