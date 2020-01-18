@@ -4,8 +4,7 @@ class WebsiteController < ApplicationController
   end
 
   def donate
-    charity = Charity.find_by(id: params[:charity])
-    donate = Donate.new(params, charity)
+    donate = Donate.new(params)
 
     if donate.process_donation
       flash.notice = t(".success")

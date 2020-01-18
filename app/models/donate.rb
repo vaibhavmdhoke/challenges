@@ -1,14 +1,22 @@
 class Donate
   attr_accessor :params, :charity, :charge, :omise_token, :amount
 
-  def initialize(params, charity)
+  def initialize(params)
     @params = params
-    @charity = charity
     @amount = params[:amount]
     @omise_token = params[:omise_token]
   end
 
+  def find_or_pick_random_charity
+    @charity =  if params[:charity] == 'random'
+                  Charity.find_by_id Charity.ids.sample
+                else
+                  Charity.find_by_id params[:charity]
+                end
+  end
+
   def process_donation
+    find_or_pick_random_charity
     return false if !(can_donate? && amount_greater_than_twenty?)
 
     @charge = build_charge_object
